@@ -22,7 +22,8 @@ class oraciones:
 
     def __init__(self, oracion):
         self.listaPalabras = oracion.split(" ")
-
+    
+    def comprobarOracion(self):
         verb = False
 
         for i in range(len(self.listaPalabras)):
@@ -31,7 +32,10 @@ class oraciones:
                 break
 
         if verb:
-            self.verificador(self.listaPalabras)
+            try:
+                self.verificador(self.listaPalabras)
+            except:
+                print("Oops algo inesperado ha sucedido, intenta nuevamente")
         else:
             self.imprimirValidacion(False)
 
@@ -156,7 +160,6 @@ class oraciones:
             tempList = listaPalabras[1:]
             if tempList.__contains__(self.conectores[2]):
                 conector = tempList.index("un")+1
-                print(conector)
                 menor.append(conector)
             if tempList.__contains__(self.conectores[3]):
                     conector = tempList.index("una")+1
@@ -222,6 +225,7 @@ def main():
     oracion = input(BWhite + "Ingrese la frase a validar \n")
     while oracion != "0":
         oracionValidar = oraciones(oracion)
+        oracionValidar.comprobarOracion()
         oracionValidar.recorrido = 0
         oracion = input(BWhite + "Ingrese la frase a validar \n")
         
