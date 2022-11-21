@@ -9,7 +9,7 @@ Green="\033[0;32m"        # Green
 
 class oraciones:
     
-    sustantivos = ["manu", "jose", "julián", "pedro", "ana"]
+    sustantivos = ["manu", "jose", "julián", "pedro", "ana", "juan"]
     sustantivosImpro = ["niña", "casa", "carro", "pelota", "perro", "gato", "abeja", "payaso", "manzana", "cuchillo"]
     verbos= ["come","corre","salta","juega","baila","toma","estudia","lee","llora","programa", "pela"]
     adjetivos= ["dulce", "valiente", "brillante", "agradable", "amable", "bueno", "azul", "fuerte", "débil", "grande", "verde", "rapido"]
@@ -60,6 +60,25 @@ class oraciones:
             print(Red, "Frase inválida\n", Color_Off)
 
 
+    #Verbos
+    def tipo0(self, listaPalabras):
+        if len(listaPalabras) == 1:
+            if(self.verbos.__contains__(listaPalabras[0].lower())):
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    #Adjetivos
+    def tipo00(self, listaPalabras):
+        if len(listaPalabras) == 1:
+            if(self.adjetivos.__contains__(listaPalabras[0].lower())):
+                return True
+            else:
+                return False
+        else:
+            return False
     #S or SI 
     def tipo1(self, listaPalabras):
         if len(listaPalabras) == 1:
@@ -191,7 +210,11 @@ class oraciones:
             else: 
                 return False
         else:
-            if self.tipo1(listaPalabras):
+            if self.tipo0(listaPalabras):
+                return True
+            elif self.tipo00(listaPalabras):
+                return True
+            elif self.tipo1(listaPalabras):
                 return True
             elif self.tipo2(listaPalabras):
                 return True
@@ -220,14 +243,14 @@ def main():
     print(BCyan,"\tMANUELA CASTAÑO\n\n", Color_Off)
 
     print("*** Para terminar el programa escriba '0' en la consola")
-    #time.sleep(5)
+    time.sleep(5)
 
-    oracion = input(BWhite + "Ingrese la frase a validar \n")
+    oracion = input(BWhite + "Ingrese la frase a validar \n" + Color_Off)
     while oracion != "0":
         oracionValidar = oraciones(oracion)
         oracionValidar.comprobarOracion()
         oracionValidar.recorrido = 0
-        oracion = input(BWhite + "Ingrese la frase a validar \n")
+        oracion = input(BWhite + "Ingrese la frase a validar \n" + Color_Off)
         
 
 main()
