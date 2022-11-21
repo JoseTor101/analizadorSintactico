@@ -2,7 +2,9 @@ import time
 
 Color_Off="\033[0m"       # Color reset
 BGreen="\033[1;32m"       # Green
+BRed="\033[1;31m"         # Red
 BCyan="\033[1;36m"        # Cyan
+Cyan="\033[0;36m"         # Cyan
 BWhite="\033[1;37m"       # White
 Red="\033[0;31m"          # Red
 Green="\033[0;32m"        # Green
@@ -11,13 +13,14 @@ class oraciones:
     
     sustantivos = ["manu", "jose", "julián", "pedro", "ana", "juan"]
     sustantivosImpro = ["niña", "casa", "carro", "pelota", "perro", "gato", "abeja", "payaso", "manzana", "cuchillo"]
-    verbos= ["come","corre","salta","juega","baila","toma","estudia","lee","llora","programa", "pela"]
+    verbos= ["come","corre","salta","juega","baila","toma","estudia","lee","llora","programa", "pela", "rie"]
     adjetivos= ["dulce", "valiente", "brillante", "agradable", "amable", "bueno", "azul", "fuerte", "débil", "grande", "verde", "rapido"]
     artD = ["el", "los", "la", "las"]
     artInd = ["un", "uno", "una", "unas"]
     conectores = ["con", "y", "un", "una"]
 
     listaPalabras = None
+
     recorrido = 0
 
     def __init__(self, oracion):
@@ -245,7 +248,86 @@ def main():
     print("*** Para terminar el programa escriba '0' en la consola")
     time.sleep(5)
 
+    disponibles = oraciones("")
+
+    sust = disponibles.sustantivos
+    print(Cyan, "\nSustantivos:", Color_Off)
+    for i in sust:
+        print(i, end=", ")
+
+    suImp = disponibles.sustantivosImpro
+    print(Cyan, "\nSustantivos impropios:", Color_Off)
+    for i in suImp:
+        print(i, end=", ")
+
+    verb = disponibles.sustantivosImpro
+    print(Cyan, "\nVerbos:", Color_Off)
+    for i in verb:
+        print(i, end=", ")
+
+    adj = disponibles.adjetivos
+    print(Cyan, "\nAdjetivos:", Color_Off)
+    for i in adj:
+        print(i, end=", ")
+
+    artD = disponibles.artD
+    print(Cyan, "\nArticulos definidos:", Color_Off)
+    for i in artD:
+        print(i, end=", ")
+
+    artInd = disponibles.artInd
+    print(Cyan, "\nArticulos indefinidos:", Color_Off)
+    for i in artInd:
+        print(i, end=", ")
+
+    conec = disponibles.conectores
+    print(Cyan, "\nConectores:", Color_Off)
+    for i in conec:
+        print(i, end=", ")
+    
+    time.sleep(10)
+
+    print(BGreen, "\n\nEjemplos válidos: ", Color_Off)
+
+    f1 = "Ana salta"
+    ej1 = oraciones(f1)
+    print(f1)
+    ej1.comprobarOracion()
+
+    f2 = "La niña pela una manzana verde con el cuchillo"
+    ej2 = oraciones(f2)
+    print(f2)
+    ej2.comprobarOracion()
+
+    f3 = "Jose come una manzana con Manu"
+    print(f3)
+    ej3 = oraciones(f3)
+    ej3.comprobarOracion()
+
+    f4 = "Juan corre con una manzana"
+    ej4 = oraciones(f4)
+    print(f4)
+    ej4.comprobarOracion()
+
+    print(BRed,"Ejemplo inválidos: ", Color_Off)
+
+    f5 = "Corre salta"
+    ej5 = oraciones(f5)
+    print(f5)
+    ej5.comprobarOracion()
+
+    f6 = "Pedro salta come"
+    ej6 = oraciones(f6)
+    print(f6)
+    ej6.comprobarOracion()
+
+    f7 = "Jose programa camina con Julián"
+    print(f7)
+    ej7 = oraciones(f7)
+    ej7.comprobarOracion()
+
     oracion = input(BWhite + "Ingrese la frase a validar \n" + Color_Off)
+   
     while oracion != "0":
         oracionValidar = oraciones(oracion)
         oracionValidar.comprobarOracion()
